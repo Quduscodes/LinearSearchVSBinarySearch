@@ -24,7 +24,7 @@ void main() {
     }
     int endTime = new DateTime.now().millisecond;
     int totalTime = endTime - startTime;
-    print('linear search took: $totalTime');
+    print('linear search took: $totalTime ms');
   }
 
   void binSearch(List<User> arr,int low, int high, var x){
@@ -48,7 +48,7 @@ void main() {
 
     int endTime = new DateTime.now().millisecond;
     int totalTime = endTime - startTime;
-    print('Binary Search took: $totalTime');
+    print('Binary Search took: $totalTime ms');
   }
 
   linSearch(users, 'Chicken');
