@@ -1,5 +1,7 @@
 void main() {
 
+  // List<int> numbers = [10,12,20,2,5];
+
   List<User> users = [User(firstName: 'Tolulope', lastName: 'Abiona', nationality: 'Nigerian'),
     User(firstName: 'Fatungase', lastName: 'Qudus', nationality: 'Nigerian'),
     User(firstName: 'Fadeyi', lastName: 'Folarin', nationality: 'Nigerian'),
@@ -12,10 +14,47 @@ void main() {
 
   ];
 
-  Comparator<User> comparator = (a, b) => a.firstName.compareTo(b.firstName);
-  users.sort(comparator);
+  // Comparator<User> comparator = (a, b) => a.firstName.compareTo(b.firstName);
+  // users.sort(comparator);
+
+
+  void stringBubbleSort(List<User> arr){
+    int startTime = new DateTime.now().millisecond;
+    for(int i = 0; i < arr.length; i++){
+      for(int j = 0; j < arr.length -i-1; j++){
+        if (arr[j].firstName.compareTo(arr[j+1].firstName) == 1){
+          String obj = arr[j].firstName;
+          arr[j].firstName = arr[j+1].firstName;
+          arr[j+1].firstName = obj;
+        }
+      }
+    }
+    print(arr);
+    int endTime = new DateTime.now().millisecond;
+    int totalTime = endTime - startTime;
+    print('bubble sort took: $totalTime ms');
+  }
+
+  // List<int> bubbleSort(List<int> arr){
+  //   int startTime = new DateTime.now().millisecond;
+  //   for(int i = 0; i < arr.length; i++){
+  //     for(int j = 0; j < arr.length -i-1; j++){
+  //       if (arr[j] > arr[j+1]){
+  //         int num = arr[j];
+  //         arr[j] = arr[j+1];
+  //         arr[j+1] = num;
+  //       }
+  //     }
+  //   }
+  //   print(arr);
+  //   int endTime = new DateTime.now().millisecond;
+  //   int totalTime = endTime - startTime;
+  //   print('bubble sort took: $totalTime ms');
+  //   return arr;
+  // }
 
   void linSearch(List<User> arr, var x){
+    stringBubbleSort(arr);
     int startTime = new DateTime.now().millisecond;
     for(int i = 0; i < arr.length; i++){
       if (arr[i].firstName == x){
@@ -28,10 +67,10 @@ void main() {
   }
 
   void binSearch(List<User> arr,int low, int high, var x){
+    stringBubbleSort(arr);
     int startTime = new DateTime.now().millisecond;
     if (high > low){
       int mid = (high + low) ~/ 2;
-
       if(x == arr[mid].firstName){
         print('$x was found at index $mid');
       }
@@ -51,8 +90,10 @@ void main() {
     print('Binary Search took: $totalTime ms');
   }
 
-  linSearch(users, 'Chicken');
+  linSearch(users, 'Fadeyi');
   binSearch(users, 0, users.length, 'Fatungase');
+  // bubbleSort(numbers);
+  // stringBubbleSort(users);
 }
 
 class User{
@@ -61,6 +102,8 @@ String lastName;
 String nationality;
 
 User({ required this.firstName,required this.lastName, required this.nationality});
+
+@override toString() => 'firstname: $firstName';
 }
 
 
